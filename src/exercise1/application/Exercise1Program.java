@@ -6,14 +6,13 @@ import exercise1.entities.Worker;
 import exercise1.entities.WorkerLevel;
 
 import java.time.LocalDate;
-import java.time.Year;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.logging.Level;
 
-public class exercise1Program {
+
+public class Exercise1Program {
     public static void main(String[] Args){
 
         Locale.setDefault(Locale.US);
@@ -33,7 +32,7 @@ public class exercise1Program {
         name = sc.nextLine();
 
         System.out.print("Level (JUNIOR, MID_LEVEL, SENIOR): ");
-        WorkerLevel level = WorkerLevel.valueOf(sc.nextLine());
+        WorkerLevel level = WorkerLevel.valueOf(sc.nextLine().toUpperCase());
 
         System.out.print("Base salary: ");
         baseSalary = sc.nextDouble();
