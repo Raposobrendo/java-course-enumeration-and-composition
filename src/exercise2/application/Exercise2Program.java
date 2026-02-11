@@ -14,8 +14,6 @@ import java.util.Scanner;
 public class Exercise2Program {
     public static void main(String[] Args){
 
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
@@ -28,7 +26,7 @@ public class Exercise2Program {
             String answer = sc.nextLine().trim().toLowerCase();
 
             if(answer.equals("yes")) {
-                LocalDate postMoment = LocalDate.now();
+                LocalDateTime postMoment = LocalDateTime.now();
 
                 System.out.print("Make a post title: ");
                 String title = sc.nextLine();

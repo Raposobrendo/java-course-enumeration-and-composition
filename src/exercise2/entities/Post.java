@@ -1,8 +1,10 @@
 package exercise2.entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +12,7 @@ public class Post {
 
     private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
-    private LocalDate moment;
+    private LocalDateTime moment;
     private String title;
     private String content;
     private Integer likes;
@@ -21,18 +23,18 @@ public class Post {
 
     }
 
-    public Post(LocalDate moment, String title, String content, Integer likes) {
+    public Post(LocalDateTime moment, String title, String content, Integer likes) {
         this.moment = moment;
         this.title = title;
         this.content = content;
         this.likes = likes;
     }
 
-    public LocalDate getMoment() {
+    public LocalDateTime getMoment() {
         return moment;
     }
 
-    public void setMoment(LocalDate moment) {
+    public void setMoment(LocalDateTime moment) {
         this.moment = moment;
     }
 
@@ -61,10 +63,13 @@ public class Post {
     }
 
     public List<Comment> getComment(){
-        return comments;
+        return Collections.unmodifiableList(comments);
     }
 
     public void addComment(Comment comment){
+        if(comment == null){
+            throw new IllegalArgumentException("Comment cannot be null");
+        }
         comments.add(comment);
     }
 
@@ -75,8 +80,7 @@ public class Post {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append(title + "\n");
-        sb.append(likes + " Likes:" + " - " + moment + "\n");
-        sb.append(title + "\n");
+        sb.append(likes + " Likes:" + " - " + fmt.format(moment) + "\n");
         sb.append(content + "\n");
         sb.append("Comments: \n");
         for(Comment c : comments){
