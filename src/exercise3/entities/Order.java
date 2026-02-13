@@ -2,10 +2,14 @@ package exercise3.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+
+    DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private LocalDateTime moment;
     private OrderStatus status;
@@ -64,5 +68,19 @@ public class Order {
             total += oi.subTotal();
         }
         return total;
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("ORDER SUMMARY: \n");
+        sb.append("Order moment: " + fmt1.format(moment) + "\n");
+        sb.append("Client: " + client.getName() + " " + fmt2.format(client.getBirthDate()) + " - " + client.getEmail() + "\n");
+        sb.append("Order Items: \n");
+        for(OrderItem oi : orderItem){
+            sb.append(oi.getProduct().getName() + ", $" + oi.getPrice() + ", Quantity: " + oi.getQuantity() + ", Subtotal: $" + oi.subTotal() + "\n");
+        }
+        sb.append("Total price: $" + total());
+
+        return sb.toString();
     }
 }

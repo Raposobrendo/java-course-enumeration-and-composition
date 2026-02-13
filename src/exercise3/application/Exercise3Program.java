@@ -25,7 +25,7 @@ public class Exercise3Program {
 
         System.out.print("Birth date (DD/MM/YYYY): ");
         String birthDateString = sc.nextLine();
-        LocalDate birthDate = LocalDate.parse(birthDateString);
+        LocalDate birthDate = LocalDate.parse(birthDateString, fmt);
 
         Client client = new Client(name, email, birthDate);
 
@@ -58,6 +58,9 @@ public class Exercise3Program {
             OrderItem orderItem = new OrderItem(product, productQuantity, productPrice);
             order.addOrderItem(orderItem);
         }
+
+        System.out.println(order);
+
 
 
 
